@@ -4,7 +4,7 @@ Proyecto Final Bases de Datos Distribuídas
 ---
 
 #  🎧👂 Séptimo-Arte 👂🎧
-https://codingdiksha.com/tkinter-python-pdf-viewer/
+
 📖 A Distributed DBMS  App   
 Welcome to the PDF Reader App! 🎉 This is a simple application that allows you to easily manage . 🖥️  
 
@@ -12,10 +12,10 @@ Welcome to the PDF Reader App! 🎉 This is a simple application that allows you
 - Jorge Jacuinde Mayes
 - Miguel Angel Zamorano Presa
 ## Features 🌟  
-- Open and read PDF files on your computer 📂
-- Quickly  change language reader voice  🔍
+- Open and read tables of the database  on your computer 📂
+- Changes are updated in Tables of the other   DBMS nodes system  🔍
 - Navigate & manipulate voice records with a  simple user interface 🚀
-- Quickly search for specific text within a PDF file 🔎
+- Quickly search for specific INFO  🔎
 
 
 
@@ -23,8 +23,8 @@ Welcome to the PDF Reader App! 🎉 This is a simple application that allows you
 To use the PDF Reader app, follow the steps below:  
 
 ### Step 1: Download the Executable  
-1. Go to the PDF_Reader_APP folder in this repository.  
-2. Click on the y.exe file.  
+1. Go to the DBMS_APP folder in this repository.  
+2. Click on the DMBS.exe file.  
 3. On the file page, click the "Download" button to download the executable to your local machine.  
 ### Step 2: Run the App  
 1. After the download is complete, navigate to the location where you saved the y.exe file.  
@@ -34,10 +34,12 @@ Note: This executable is only available for Windows. If you are using a differen
 
 
 ## Usage 📝
-1. Open the PDF Reader App. 📂
-2. Click the "Open PDF" button to select a PDF file from your computer. 🖱️
-3. Once the file is loaded, use the navigation controls to browse through the pages. 📄
-4. Use the play/pause controls to play & stop the reader voice. 🔍
+1. Open the DBMS App. 📂
+2. Click the "BOOKING" button to DISPPLAY BOOKING CALENDAR from your computer. 🖱️
+3. SELECT a specific date to check the disponibilty of that day
+4. the "Check-in" button to DISPPLAY BOOKING CALENDAR from your computer. 🖱️
+5. Once the file is loaded, use the navigation controls to browse through the pages. 📄
+6. Use the play/pause controls to play & stop the reader voice. 🔍
 
 ## Language code 💻
 - Python 🐍
