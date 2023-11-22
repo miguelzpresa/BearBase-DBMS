@@ -3,7 +3,7 @@ Proyecto Final Bases de Datos Distribuídas
 
 ---
 
-#  🎧👂 Séptimo-Arte 👂🎧
+#  🎧👂 BearBaase-DBMS 👂🎧
 
 📖 A Distributed DBMS  App   
 Welcome to the PDF Reader App! 🎉 This is a simple application that allows you to easily manage . 🖥️  
