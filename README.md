@@ -45,13 +45,10 @@ Note: This executable is only available for Windows. If you are using a differen
 - Python 🐍
 
 ## Libraries 🤝
-- PyPDF2 ⏺️
-- gTTs 🐍
-- Pygame  🐧
-- Tkinter ⏺️
-- kivy  🐧
-- kivymd ⏺️
-- os 🐍
+- sys ⏺️
+- mariadb 🐍
+- rich  🐧
+
 
    
    a. For Developers: Methods used to load the libraries: 📖
