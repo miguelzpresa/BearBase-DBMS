@@ -6,7 +6,7 @@ Proyecto Final Bases de Datos Distribuídas
 #  🎧👂 BearBaase-DBMS 👂🎧
 
 📖 A Distributed DBMS  App   
-Welcome to the PDF Reader App! 🎉 This is a simple application that allows you to easily manage . 🖥️  
+Welcome to the DBMS App! 🎉 This is a simple application that allows you to easily manage . 🖥️  
 
 ## Team Members
 - Jorge Jacuinde Mayes
