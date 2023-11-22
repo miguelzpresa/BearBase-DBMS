@@ -3,7 +3,7 @@ Proyecto Final Bases de Datos Distribuídas
 
 ---
 
-#  🎧👂 BearBaase-DBMS 👂🎧
+#  🎧👂 BearBase-DBMS 👂🎧
 
 📖 A Distributed DBMS  App   
 Welcome to the DBMS App! 🎉 This is a simple application that allows you to easily manage . 🖥️  
