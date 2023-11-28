@@ -4,13 +4,7 @@
             "Host": "localhost",
             "Port": "3306",
             "Database": "qro"
-        },
-"db2": {
-            "User": "adminmore",
-            "Password": "morelia104",
-            "Host": "localhost",
-            "Port": "3306",
-            "Database": "morelia"
         }
+
     
 }

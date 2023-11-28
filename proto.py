@@ -144,7 +144,7 @@ def Connection():
                 user=data[i]["User"],
                 password=data[i]["Password"],
                 host=data[i]["Host"],
-                port=data[i]["Port"],
+                port=int(data[i]["Port"]),
                 database=data[i]["Database"]
             )
             connects.append(conn)
@@ -175,7 +175,6 @@ def main()->None:
     global in_app
     Init()
     print(data)
-    return 0
     Connection()
     print("[hot_pink1]Bienvenido![/]")
     while in_app:
