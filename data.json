@@ -2,7 +2,7 @@
             "User": "adminqro",
             "Password": "patos104",
             "Host": "localhost",
-            "Port": "3306",
+            "Port": 3306,
             "Database": "qro"
         }
 

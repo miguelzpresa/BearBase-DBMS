@@ -27,15 +27,15 @@ def Init():
 
 def Update()->None:
     global data, cursors
-    objetotipo = validator(Prompt.ask("[green]¿Que desea actualizar?[/] Cliente o Direccion",choices=["Cliente","Direccion"]))
+    objetotipo = validator(Prompt.ask("[green]¿Que desea actualizar?[/] Cliente o Direccion",choices=["cliente","Direccion"]))
     idi = Prompt.ask("[green]Ingrese el ID[/]")
-    if objetotipo == "Cliente":
+    if objetotipo == "cliente":
         nombre = validator(Prompt.ask("[green]Ingrese el nombre del cliente:[/]"))
         apellido = validator(Prompt.ask("[green]Ingrese el apellido paterno del cliente:[/]"))
         apellido_m = validator(Prompt.ask("[green]Ingrese el apellido materno del cliente:[/]"))
         rfc = validatorrfc(Prompt.ask("[green]Ingrese el RFC del cliente:[/]"))
         for i in cursors:
-            i.execute(f"UPDATE Clientes SET Nombre = '{nombre}', Ap_pat = '{apellido}', Ap_mat = '{apellido_m}', RFC = '{rfc}' WHERE ID = {idi}")
+            i.execute(f"UPDATE clientes SET Nombre = '{nombre}', Ap_pat = '{apellido}', Ap_mat = '{apellido_m}', RFC = '{rfc}' WHERE ID = {idi}")
     elif objetotipo == "Direccion":
         calle = Prompt.ask("[green]Ingrese la calle:[/]")
         numero = Prompt.ask("[green]Ingrese el número del domicilio:[/]")
@@ -55,7 +55,7 @@ def Search()->None:
     if tipobusqueda == "RFC":
         rfc = validatorrfc(Prompt.ask("[green]Ingrese el RFC del cliente:[/]"))
         for i in cursors:
-            i.execute(f"SELECT * FROM Clientes WHERE RFC = '{rfc}'")
+            i.execute(f"SELECT * FROM clientes WHERE RFC = '{rfc}'")
             if i.fetchall() != []:
                 resultado.append(i.fetchall())
         if len(resultado) == 0:
@@ -76,19 +76,19 @@ def Search()->None:
         if parte_de_nombre == "nombre":
             nombre = validator(Prompt.ask("[green]Ingrese el nombre del cliente:[/]"))
             for i in cursors:
-                i.execute(f"SELECT * FROM Clientes WHERE Nombre = '{nombre}'")
+                i.execute(f"SELECT * FROM clientes WHERE Nombre = '{nombre}'")
                 if i.fetchall() != []:
                     resultado.append(i.fetchall())
         elif parte_de_nombre == "apellido paterno":
             apellido = validator(Prompt.ask("[green]Ingrese el apellido paterno del cliente:[/]"))
             for i in cursors:
-                i.execute(f"SELECT * FROM Clientes WHERE Ap_pat = '{apellido}'")
+                i.execute(f"SELECT * FROM clientes WHERE Ap_pat = '{apellido}'")
                 if i.fetchall() != []:
                     resultado.append(i.fetchall())
         elif parte_de_nombre == "apellido materno":
             apellido_m = validator(Prompt.ask("[green]Ingrese el apellido materno del cliente:[/]"))
             for i in cursors:
-                i.execute(f"SELECT * FROM Clientes WHERE Ap_mat = '{apellido_m}'")
+                i.execute(f"SELECT * FROM clientes WHERE Ap_mat = '{apellido_m}'")
                 if i.fetchall() != []:
                     resultado.append(i.fetchall())
         if len(resultado) == 0:
@@ -111,7 +111,7 @@ def Search()->None:
         estado = Prompt.ask("[green]Ingrese el estado:[/]")
         cp = Prompt.ask("[green]Ingrese el código postal:[/]")
         for i in cursors:
-            i.execute(f"SELECT * FROM (Clientes INNER JOIN Direcciones ON Clientes.ID = Direcciones.clienteID) WHERE calle = '{calle}' AND numero = {numero} AND colonia = '{colonia}' AND estado = '{estado}' AND CP = {cp}") 
+            i.execute(f"SELECT * FROM (clientes INNER JOIN Direcciones ON clientes.ID = Direcciones.clienteID) WHERE calle = '{calle}' AND numero = {numero} AND colonia = '{colonia}' AND estado = '{estado}' AND CP = {cp}") 
             if i.fetchall() != []:
                 resultado.append(i.fetchall())
         if len(resultado) == 0:
@@ -176,20 +176,20 @@ def num_validator(inputt):
 
 
     
-def Insert(tabla)->None:
+def Insert()->None:
     global data, cursors
     sucursals = list(data.keys())
     suc = Prompt.ask("[green]¿En que sucursal desea insertar?[/]", choices=sucursals)
     
     cursor_a_usar = cursors[sucursals.index(suc)]
-    tabla = Prompt.ask("[green]¿En que tabla desea insertar?[/]",choices=["Clientes","Direcciones"])
+    tabla = Prompt.ask("[green]¿En que tabla desea insertar?[/]",choices=["clientes","Direcciones"])
     done = False
-    if tabla == "Clientes":
+    if tabla == "clientes":
         nombre = validator(Prompt.ask("[green]Ingrese el nombre del cliente:[/]"))
         apellido = validator(Prompt.ask("[green]Ingrese el apellido paterno del cliente:[/]"))
         apellido_m = validator(Prompt.ask("[green]Ingrese el apellido materno del cliente:[/]"))
         rfc = validatorrfc(Prompt.ask("[green]Ingrese el RFC del cliente:[/]"))
-        cursor_a_usar.execute(f"INSERT INTO Clientes(Nombre,Ap_pat,Ap_mat,RFC) VALUES('{nombre}','{apellido}','{apellido_m}','{rfc}')")
+        cursor_a_usar.execute(f"INSERT INTO clientes(Nombre,Ap_pat,Ap_mat,RFC) VALUES('{nombre}','{apellido}','{apellido_m}','{rfc}')")
         done = True
     elif tabla == "Direcciones":
         calle = validator(Prompt.ask("[green]Ingrese la calle:[/]"))
@@ -211,12 +211,12 @@ def Select():#tablas=["clientes","Direcciones"]
     bds = list(data.keys())
     bds.append("Todas")
 
-    tabla = Prompt.ask("[green]¿Que tabla desea seleccionar?[/], Clientes, Direcciones o Ambas", choices=["Clientes", "Direcciones", "Ambas"])
+    tabla = Prompt.ask("[green]¿Que tabla desea seleccionar?[/], Clientes, Direcciones o Ambas", choices=["clientes", "Direcciones", "Ambas"])
     base = Prompt.ask("[green]¿En que base de datos desea seleccionar?[/]", choices=bds)
     if tabla != "Ambas":
         tablas = [tabla]
     else:
-        tablas = ["Clientes", "Direcciones"]
+        tablas = ["clientes", "Direcciones"]
 
     if base != "Todas":
         cursor=cursors[bds.index(base)]
@@ -250,7 +250,7 @@ def Select():#tablas=["clientes","Direcciones"]
             for tabla in tablas:
                 cursor.execute(f"SELECT * FROM {tabla}")
                 results.extend(cursor.fetchall())
-                if tabla == "Clientes":
+                if tabla == "clientes":
                     table = Table(title="Resultados de la busqueda")
                     table.add_column("ID", justify="center", style="cyan")
                     table.add_column("Nombre", justify="center", style="cyan")
@@ -282,7 +282,7 @@ def Connection():
                 user=data[i]["User"],
                 password=data[i]["Password"],
                 host=data[i]["Host"],
-                port=data[i]["Port"],
+                port=int(data[i]["Port"]),
                 database=data[i]["Database"]
             )
             connects.append(conn)
@@ -315,3 +315,4 @@ def main()->None:
             in_app = False
             print("[hot_pink1]Saliendo...[/]")
             Poweroff()
+main()
