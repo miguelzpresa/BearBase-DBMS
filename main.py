@@ -36,6 +36,7 @@ def Update()->None:
         rfc = validatorrfc(Prompt.ask("[green]Ingrese el RFC del cliente:[/]"))
         for i in cursors:
             i.execute(f"UPDATE clientes SET Nombre = '{nombre}', Ap_pat = '{apellido}', Ap_mat = '{apellido_m}', RFC = '{rfc}' WHERE ID = {idi}")
+            i.commit()
     elif objetotipo == "Direccion":
         calle = Prompt.ask("[green]Ingrese la calle:[/]")
         numero = Prompt.ask("[green]Ingrese el número del domicilio:[/]")
@@ -45,6 +46,7 @@ def Update()->None:
         id_c = Prompt.ask("[green]Ingrese el ID del cliente:[/]")
         for i in cursors:
             i.execute(f"UPDATE Direcciones SET calle = '{calle}', numero = {numero}, colonia = '{colonia}', estado = '{estado}', CP = {cp}, clienteID = {id_c} WHERE ID = {idi}")
+            i.commit()
     
         
 
@@ -190,6 +192,7 @@ def Insert()->None:
         apellido_m = validator(Prompt.ask("[green]Ingrese el apellido materno del cliente:[/]"))
         rfc = validatorrfc(Prompt.ask("[green]Ingrese el RFC del cliente:[/]"))
         cursor_a_usar.execute(f"INSERT INTO clientes(Nombre,Ap_pat,Ap_mat,RFC) VALUES('{nombre}','{apellido}','{apellido_m}','{rfc}')")
+        cursor_a_usar.commit()
         done = True
     elif tabla == "Direcciones":
         calle = validator(Prompt.ask("[green]Ingrese la calle:[/]"))
@@ -199,6 +202,7 @@ def Insert()->None:
         cp = Prompt.ask("[green]Ingrese el código postal:[/]")
         id_c = Prompt.ask("[green]Ingrese el ID del cliente:[/]")# pendiente
         cursor_a_usar.execute(f"INSERT INTO Direcciones(calle,numero,colonia,estado,CP,clienteID) VALUES('{calle}',{numero},'{colonia}','{estado}',{cp},{id_c})")
+        cursor_a_usar.commit()
         done = True
     if done:
         print("[green]¡Datos insertados correctamente![/]")
