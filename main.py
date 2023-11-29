@@ -35,8 +35,8 @@ def Update()->None:
         apellido_m = validator(Prompt.ask("[green]Ingrese el apellido materno del cliente:[/]"))
         rfc = validatorrfc(Prompt.ask("[green]Ingrese el RFC del cliente:[/]"))
         for i in cursors:
-            i.execute(f"UPDATE clientes SET Nombre = '{nombre}', Ap_pat = '{apellido}', Ap_mat = '{apellido_m}', RFC = '{rfc}' WHERE ID = {idi}")
-            i.commit()
+            i.execute(f"UPDATE clientes SET Nombre = '{nombre}', Ap_pat = '{apellido}', Ap_mat = '{apellido_m}', RFC = '{rfc}' WHERE clienteID = {idi}")
+        print("DATOS ACTUALIZADOS")
     elif objetotipo == "Direccion":
         calle = Prompt.ask("[green]Ingrese la calle:[/]")
         numero = Prompt.ask("[green]Ingrese el número del domicilio:[/]")
@@ -45,8 +45,8 @@ def Update()->None:
         cp = Prompt.ask("[green]Ingrese el código postal:[/]")
         id_c = Prompt.ask("[green]Ingrese el ID del cliente:[/]")
         for i in cursors:
-            i.execute(f"UPDATE Direcciones SET calle = '{calle}', numero = {numero}, colonia = '{colonia}', estado = '{estado}', CP = {cp}, clienteID = {id_c} WHERE ID = {idi}")
-            i.commit()
+            i.execute(f"UPDATE Direcciones SET calle = '{calle}', numero = {numero}, colonia = '{colonia}', estado = '{estado}', CP = {cp}, clienteID = {id_c} WHERE OrderID = {idi}")
+        print("DATOS ACTUALIZADOS")  
     
         
 
@@ -58,8 +58,9 @@ def Search()->None:
         rfc = validatorrfc(Prompt.ask("[green]Ingrese el RFC del cliente:[/]"))
         for i in cursors:
             i.execute(f"SELECT * FROM clientes WHERE RFC = '{rfc}'")
-            if i.fetchall() != []:
-                resultado.append(i.fetchall())
+            arx = i.fetchall()
+            if arx != []:
+                resultado.append(arx)
         if len(resultado) == 0:
             print("[red]No se encontraron resultados[/]")
         else:
@@ -74,25 +75,28 @@ def Search()->None:
                     table.add_row(str(j[0]), j[1], j[2], j[3], j[4])
             print(table)
     elif tipobusqueda == "Nombre":
-        parte_de_nombre = Prompt.ask("[green]Ingrese si buscara por nombre, apellido paterno o apellido materno:[/]", options=["nombre", "apellido paterno", "apellido materno"])
+        parte_de_nombre = Prompt.ask("[green]Ingrese si buscara por nombre, apellido paterno o apellido materno:[/]", choices=["nombre", "apellido paterno", "apellido materno"])
         if parte_de_nombre == "nombre":
             nombre = validator(Prompt.ask("[green]Ingrese el nombre del cliente:[/]"))
             for i in cursors:
                 i.execute(f"SELECT * FROM clientes WHERE Nombre = '{nombre}'")
-                if i.fetchall() != []:
-                    resultado.append(i.fetchall())
+                arx = i.fetchall()
+                if arx != []:
+                    resultado.append(arx)
         elif parte_de_nombre == "apellido paterno":
             apellido = validator(Prompt.ask("[green]Ingrese el apellido paterno del cliente:[/]"))
             for i in cursors:
                 i.execute(f"SELECT * FROM clientes WHERE Ap_pat = '{apellido}'")
-                if i.fetchall() != []:
-                    resultado.append(i.fetchall())
+                arx = i.fetchall()
+                if arx != []:
+                    resultado.append(arx)
         elif parte_de_nombre == "apellido materno":
             apellido_m = validator(Prompt.ask("[green]Ingrese el apellido materno del cliente:[/]"))
             for i in cursors:
                 i.execute(f"SELECT * FROM clientes WHERE Ap_mat = '{apellido_m}'")
-                if i.fetchall() != []:
-                    resultado.append(i.fetchall())
+                arx = i.fetchall()
+                if arx != []:
+                    resultado.append(arx)
         if len(resultado) == 0:
             print("[red]No se encontraron resultados[/]")
         else:
@@ -113,9 +117,10 @@ def Search()->None:
         estado = Prompt.ask("[green]Ingrese el estado:[/]")
         cp = Prompt.ask("[green]Ingrese el código postal:[/]")
         for i in cursors:
-            i.execute(f"SELECT * FROM (clientes INNER JOIN Direcciones ON clientes.ID = Direcciones.clienteID) WHERE calle = '{calle}' AND numero = {numero} AND colonia = '{colonia}' AND estado = '{estado}' AND CP = {cp}") 
-            if i.fetchall() != []:
-                resultado.append(i.fetchall())
+            i.execute(f"SELECT * FROM (clientes INNER JOIN Direcciones ON clientes.clienteID = Direcciones.clienteID) WHERE calle = '{calle}' AND numero = {numero} AND colonia = '{colonia}' AND estado = '{estado}' AND CP = {cp}") 
+            arx = i.fetchall()
+            if arx != []:
+                resultado.append(arx)
         if len(resultado) == 0:
             print("[red]No se encontraron resultados[/]")
         else:
@@ -132,7 +137,7 @@ def Search()->None:
             table.add_column("CP", justify="center", style="cyan")
             for i in resultado:
                 for j in i:
-                    table.add_row(str(j[0]), j[1], j[2], j[3], j[4], j[5], str(j[6]), j[7], j[8], str(j[9]))
+                    table.add_row(str(j[0]), str(j[1]), str(j[2]), str(j[3]), str(j[4]), str(j[5]), str(j[6]), str(j[7]), str(j[8]), str(j[9]))
             print(table)
         
             
@@ -192,7 +197,7 @@ def Insert()->None:
         apellido_m = validator(Prompt.ask("[green]Ingrese el apellido materno del cliente:[/]"))
         rfc = validatorrfc(Prompt.ask("[green]Ingrese el RFC del cliente:[/]"))
         cursor_a_usar.execute(f"INSERT INTO clientes(Nombre,Ap_pat,Ap_mat,RFC) VALUES('{nombre}','{apellido}','{apellido_m}','{rfc}')")
-        cursor_a_usar.commit()
+        
         done = True
     elif tabla == "Direcciones":
         calle = validator(Prompt.ask("[green]Ingrese la calle:[/]"))
@@ -202,7 +207,7 @@ def Insert()->None:
         cp = Prompt.ask("[green]Ingrese el código postal:[/]")
         id_c = Prompt.ask("[green]Ingrese el ID del cliente:[/]")# pendiente
         cursor_a_usar.execute(f"INSERT INTO Direcciones(calle,numero,colonia,estado,CP,clienteID) VALUES('{calle}',{numero},'{colonia}','{estado}',{cp},{id_c})")
-        cursor_a_usar.commit()
+        
         done = True
     if done:
         print("[green]¡Datos insertados correctamente![/]")
@@ -224,10 +229,12 @@ def Select():#tablas=["clientes","Direcciones"]
 
     if base != "Todas":
         cursor=cursors[bds.index(base)]
+        
+
         for tabla in tablas:
             cursor.execute(f"SELECT * FROM {tabla}")
             results = cursor.fetchall()
-            if tabla == "Clientes":
+            if tabla == "clientes":
                 table = Table(title="Resultados de la busqueda")
                 table.add_column("ID", justify="center", style="cyan")
                 table.add_column("Nombre", justify="center", style="cyan")
@@ -236,6 +243,7 @@ def Select():#tablas=["clientes","Direcciones"]
                 table.add_column("RFC", justify="center", style="cyan")
                 for i in results:
                     table.add_row(str(i[0]), i[1], i[2], i[3], i[4])
+                print(table)
             elif tabla == "Direcciones":
                 table = Table(title="Resultados de la busqueda")
                 table.add_column("ID", justify="center", style="cyan")
@@ -246,7 +254,8 @@ def Select():#tablas=["clientes","Direcciones"]
                 table.add_column("CP", justify="center", style="cyan")
                 table.add_column("ID Cliente", justify="center", style="cyan")
                 for i in results:
-                    table.add_row(str(i[0]), i[1], i[2], i[3], i[4], i[5], str(i[6]))
+                    table.add_row(str(i[0]), str(i[1]), str(i[2]), str(i[3]), str(i[4]), str(i[5]), str(i[6]))
+                print(table)
     elif base =="Todas":
         for cursore in list(data.keys()):
             print(f"[cyan]Base de datos {cursore}[/]")
@@ -287,7 +296,8 @@ def Connection():
                 password=data[i]["Password"],
                 host=data[i]["Host"],
                 port=int(data[i]["Port"]),
-                database=data[i]["Database"]
+                database=data[i]["Database"],
+                autocommit=True
             )
             connects.append(conn)
             cursors.append(conn.cursor())
