@@ -22,5 +22,5 @@ CREATE TABLE IF NOT EXISTS Direcciones (
     colonia VARCHAR(50) NOT NULL,
     estado VARCHAR(30) NOT NULL,
     CP INT(5) NOT NULL,
-    FOREIGN KEY (clienteID) REFERENCES clientes(clientesID)
+    FOREIGN KEY (clienteID) REFERENCES clientes(clienteID)
 );
