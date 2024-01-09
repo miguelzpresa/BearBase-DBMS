@@ -3,10 +3,10 @@ Proyecto Final Bases de Datos Distribuídas
 
 ---
 
-#  🎧👂 BearBase-DBMS 👂🎧
+#  🎧 BearBase-DBMS 🎧
 
 📖 A Distributed DBMS  App   
-Welcome to the DBMS App! 🎉 This is a simple application that allows you to easily manage . 🖥️  
+Welcome to the DBMS App! 🎉 This is a simple application that allows you to easily manage a multiple databases in a distributed manager system style for our class of Distributed DB. 🖥️  
 
 ## Team Members
 - Jorge Jacuinde Mayes
@@ -20,7 +20,7 @@ Welcome to the DBMS App! 🎉 This is a simple application that allows you to ea
 
 
 ## Getting Started  🚀
-To use the PDF Reader app, follow the steps below:  
+To use the Bear Base app, follow the steps below:  
 
 ### Step 1: Download the Executable  
 1. Go to the DBMS_APP folder in this repository.  
